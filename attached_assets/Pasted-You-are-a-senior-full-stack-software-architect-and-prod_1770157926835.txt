@@ -1,0 +1,237 @@
+You are a senior full-stack software architect and product designer.
+
+Build a scalable, modular, web-based management system for a construction company called **Botello Builders**.
+
+The system must be professional, enterprise-ready, intuitive, mobile-friendly, and designed for both office staff and field supervisors (foremen).
+
+The architecture must allow adding new modules in the future without breaking existing functionality.
+
+────────────────────────
+GENERAL REQUIREMENTS
+────────────────────────
+• Web application (desktop + mobile responsive)
+• Clean, modern, professional UI (construction/industrial style)
+• Role-based access control
+• Modular architecture
+• Dashboard with KPIs and charts
+• Export data to Excel
+• Audit logs for key actions
+• English language UI
+• Scalable database structure
+• Secure authentication (email + password)
+• **Integrated AI Assistant**
+  - Can answer questions about how to use any module
+  - Can generate on-demand reports (labor, inventory, tools, equipment, etc.)
+  - Can guide users step-by-step in workflows
+  - Context-aware for each user role
+  - Can explain error messages, warnings, or alerts
+  - Can provide tips for optimizing processes
+  - Chatbox in dashboard accessible to all roles
+
+────────────────────────
+USER ROLES
+────────────────────────
+1. Admin
+2. Dispatch / Operations Manager
+3. Yard / Warehouse Manager
+4. Foreman (Field Supervisor)
+5. Safety Officer (future module support)
+
+Each role must only see the modules and actions assigned to them.
+
+────────────────────────
+CORE MODULES (PHASE 1)
+────────────────────────
+
+### 1. PROJECTS MODULE
+• Create and manage projects
+• Project ID / Job number
+• Client name
+• Location
+• Status (active, completed, paused)
+• Assigned foremen
+• Budgeted hours per phase
+• View total hours consumed vs budget
+• AI assistant can:
+  - Explain project workflow
+  - Generate project summary reports
+  - Suggest adjustments if hours exceeded
+
+────────────────────────
+### 2. PHASES / WORK CODES MODULE
+• Configurable work phases (codes)
+• Each phase has:
+  - Code (ex: 005)
+  - Name (ex: Foundation)
+  - Category (labor / material / equipment)
+• Assign budgeted hours per phase per project
+• Used across labor, materials, and reports
+• AI assistant can:
+  - Explain each code
+  - Advise on proper usage
+  - Detect inconsistent entries
+
+────────────────────────
+### 3. LABOR / TIMESHEET MODULE
+(FOREMAN FIELD VIEW)
+• Foreman enters daily labor time
+• No individual worker accounts required (phase 1)
+• Fields:
+  - Worker name or identifier
+  - Date
+  - Project
+  - Phase / work code
+  - Hours worked
+• AI assistant can:
+  - Teach how to fill timesheets correctly
+  - Detect if hours exceed phase budget
+  - Generate daily/weekly labor reports
+
+────────────────────────
+### 4. PAYROLL VIEW (ADMIN ONLY)
+• Consolidated labor hours by:
+  - Project
+  - Phase
+  - Foreman
+  - Worker name
+• Export to Excel
+• Monthly / weekly filters
+• Read-only for foremen
+• AI assistant can:
+  - Generate payroll summaries
+  - Explain discrepancies
+  - Export customized reports on demand
+
+────────────────────────
+### 5. INVENTORY MODULE
+Split into 3 submodules:
+
+#### A) TOOLS INVENTORY
+• Tool ID / Barcode
+• Description
+• Category
+• Photo upload
+• Status:
+  - Assigned
+  - Shop
+  - Loaned
+  - Under Repair
+  - Inactive
+• Assigned to:
+  - Foreman
+  - Employee
+  - Shop
+• Loan history with dates
+• Filter by person, status, location
+• Printable tool assignment report
+• AI assistant can:
+  - Show tool usage statistics
+  - Alert about overdue or missing tools
+  - Teach how to log tool movements
+
+#### B) MATERIAL INVENTORY
+• Material catalog (dropdown selection)
+• Units
+• Supplier
+• Entries (incoming)
+• Exits (usage / transfer)
+• Auto-calculate stock balance
+• Track by project and phase
+• Low stock alerts
+• Exportable reports
+• AI assistant can:
+  - Suggest reordering based on stock levels
+  - Generate material usage report
+  - Answer queries like "what was used last week for Project 1323?"
+
+#### C) EQUIPMENT / MACHINERY
+• Equipment ID
+• Type (excavator, tractor, generator, etc.)
+• Model / serial number
+• Assigned project
+• Current location
+• Status:
+  - Active
+  - In Yard
+  - In Repair
+  - Loaned
+• Movement tracking between jobs (even if it never returns to yard)
+• Maintenance history
+• AI assistant can:
+  - Remind about scheduled maintenance
+  - Flag overused machinery
+  - Answer queries like "where is the backhoe today?" or "which machines are under repair?"
+
+────────────────────────
+### 6. DISPATCH MODULE
+• View active projects
+• Assign materials, tools, and equipment
+• Create transfer records between projects
+• Track deliveries (internal or vendor)
+• Visibility into inventory availability
+• AI assistant can:
+  - Generate delivery schedules
+  - Confirm inventory availability
+  - Suggest optimal dispatch routes
+
+────────────────────────
+### 7. MAINTENANCE MODULE
+• Log maintenance events
+• Equipment hours
+• Repairs
+• Oil changes
+• Cost notes
+• History per machine
+• Flag equipment for replacement or auction
+• AI assistant can:
+  - Generate maintenance reports
+  - Track maintenance frequency
+  - Suggest preventive actions
+
+────────────────────────
+### 8. REPORTS & DASHBOARD
+• Total hours per project vs budget
+• Hours by phase
+• Tool assignment report
+• Loaned tools report
+• Inventory stock report
+• Equipment utilization
+• Charts and tables
+• Export to Excel
+• AI assistant can:
+  - Generate custom reports via chat
+  - Answer questions like "show all pending tickets for Project 1323"
+  - Give step-by-step guidance on using dashboards
+
+────────────────────────
+FUTURE MODULE SUPPORT (ARCHITECTURE READY)
+────────────────────────
+• Safety & incident reports
+• Estimations & bidding
+• Cost accounting
+• Worker individual accounts
+• Mobile app wrapper
+• AI assistant evolves with new modules
+
+────────────────────────
+UI / UX REQUIREMENTS
+────────────────────────
+• Simple, fast workflows for foremen
+• Large buttons and dropdowns (field use)
+• Desktop-friendly dashboards for admin
+• Filters everywhere
+• Search functionality
+• Minimal typing where possible
+• AI chatbox always visible, accessible per role
+• Foreman sees simplified guidance
+• Admin sees full assistant capabilities
+
+────────────────────────
+TECHNICAL REQUIREMENTS
+────────────────────────
+• Use a modern stack (React + Node.js + PostgreSQL or Supabase)
+• REST or API-based architecture
+• Clear folder structure
+• Seed data examples
+• Ready for production scaling
+• Integrate AI assistant via OpenAI API or local LLM
