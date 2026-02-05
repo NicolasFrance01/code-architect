@@ -1,7 +1,22 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import type { User } from "@shared/models/auth";
 
+
 async function fetchUser(): Promise<User | null> {
+  // Mock for local dev
+  if (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1") {
+    return {
+      id: "1",
+      email: "dev@example.com",
+      firstName: "Dev",
+      lastName: "User",
+      profileImageUrl: null,
+      role: "admin",
+      createdAt: new Date(),
+      updatedAt: new Date()
+    } as User;
+  }
+
   const response = await fetch("/api/auth/user", {
     credentials: "include",
   });

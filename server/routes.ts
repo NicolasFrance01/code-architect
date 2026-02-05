@@ -4,18 +4,18 @@ import { storage } from "./storage";
 import { api } from "@shared/routes";
 import { z } from "zod";
 import { setupAuth, registerAuthRoutes } from "./replit_integrations/auth";
-import { registerChatRoutes } from "./replit_integrations/chat";
+
 import { seed } from "./seed";
 
 export async function registerRoutes(
   httpServer: Server,
   app: Express
 ): Promise<Server> {
-  
+
   // Register Integrations
   await setupAuth(app);
   registerAuthRoutes(app);
-  registerChatRoutes(app);
+
 
   // Seed Data
   await seed();
