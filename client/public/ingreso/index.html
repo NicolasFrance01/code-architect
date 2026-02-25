@@ -10,46 +10,67 @@
 </head>
 
 <body>
-    <div class="container simple-card">
+    <div class="container">
+        <div class="header">
+            <div class="logo-icon">
+                <i class='bx bxs-hard-hat'></i>
+            </div>
+            <h1>Control de Ingreso</h1>
+            <p class="subtitle">Botello Builders Inc.</p>
+        </div>
+
         <div class="form-box">
             <form id="loginForm">
-                <h1>Reporte Diario</h1>
-                <p>Ingrese los datos de la jornada</p>
-
-                <div class="input-box">
-                    <input type="text" id="username" placeholder="Nombre (ej: Nico)" required>
-                    <i class='bx bxs-user'></i>
-                </div>
-
-                <!-- Disable password, reused as hidden or removed entirely -->
-
-                <div class="input-box">
-                    <select id="loginProject" required>
-                        <option value="" disabled selected>Seleccione Proyecto</option>
-                        <option value="loading">Cargando...</option>
-                    </select>
-                    <i class='bx bx-briefcase-alt-2'></i>
+                <div className="input-box">
+                    <label>Trabajador</label>
+                    <div class="input-interface">
+                        <input type="text" id="username" placeholder="Tu nombre..." required>
+                        <i class='bx bxs-user'></i>
+                    </div>
                 </div>
 
                 <div class="input-box">
-                    <select id="loginPhase" required>
-                        <option value="" disabled selected>Seleccione Fase</option>
-                        <option value="loading">Cargando...</option>
-                    </select>
-                    <i class='bx bx-layer'></i>
+                    <label>Proyecto</label>
+                    <div class="input-interface">
+                        <select id="loginProject" required>
+                            <option value="" disabled selected>Seleccione Proyecto</option>
+                            <option value="loading">Cargando...</option>
+                        </select>
+                        <i class='bx bx-briefcase-alt-2'></i>
+                    </div>
                 </div>
 
                 <div class="input-box">
-                    <input type="number" id="loginHours" placeholder="Horas (ej: 8.5)" step="0.5" required>
-                    <i class='bx bx-time'></i>
+                    <label>Fase de Trabajo</label>
+                    <div class="input-interface">
+                        <select id="loginPhase" required>
+                            <option value="" disabled selected>Seleccione Fase</option>
+                            <option value="loading">Cargando...</option>
+                        </select>
+                        <i class='bx bx-layer'></i>
+                    </div>
                 </div>
 
                 <div class="input-box">
-                    <input type="text" id="loginNotes" placeholder="Nota opcional">
-                    <i class='bx bx-notepad'></i>
+                    <label>Horas Trabajadas</label>
+                    <div class="input-interface">
+                        <input type="number" id="loginHours" placeholder="Ej: 8.5" step="0.5" required>
+                        <i class='bx bx-time'></i>
+                    </div>
                 </div>
 
-                <button type="submit" class="btn">Enviar Reporte</button>
+                <div class="input-box">
+                    <label>Notas / Observaciones</label>
+                    <div class="input-interface">
+                        <input type="text" id="loginNotes" placeholder="Detalles del día...">
+                        <i class='bx bx-notepad'></i>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn">
+                    <span>Enviar Reporte</span>
+                    <i class='bx bx-send'></i>
+                </button>
                 <p id="error" class="error"></p>
             </form>
         </div>
