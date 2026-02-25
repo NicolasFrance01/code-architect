@@ -3,7 +3,7 @@ import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { api } from "@shared/routes";
 import { z } from "zod";
-import { setupAuth, registerAuthRoutes } from "./replit_integrations/auth";
+// import { setupAuth, registerAuthRoutes } from "./replit_integrations/auth";
 import path from "path";
 
 import { seed } from "./seed";
@@ -15,12 +15,21 @@ export async function registerRoutes(
   app: Express
 ): Promise<Server> {
 
-  // Register Integrations
-  await setupAuth(app);
-  registerAuthRoutes(app);
-
   // External Integrations
   app.use("/api/external", externalRouter);
+
+  // Mock Auth for direct access
+  app.get("/api/auth/user", (req, res) => {
+    res.json({
+      id: "1",
+      email: "dev@example.com",
+      firstName: "Dev",
+      lastName: "User",
+      role: "admin",
+      createdAt: new Date(),
+      updatedAt: new Date()
+    });
+  });
 
   // Seed Data
   await seed();

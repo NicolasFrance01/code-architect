@@ -1,10 +1,10 @@
 import { Link, useLocation } from "wouter";
 import { useAuth } from "@/hooks/use-auth";
-import { 
-  LayoutDashboard, 
-  HardHat, 
-  Clock, 
-  Wrench, 
+import {
+  LayoutDashboard,
+  HardHat,
+  Clock,
+  Wrench,
   LogOut,
   User,
   Package,
@@ -49,13 +49,13 @@ export function LayoutShell({ children }: { children: React.ReactNode }) {
               <span className="font-display font-bold text-xl tracking-tight">Botello</span>
             </div>
           </SidebarHeader>
-          
+
           <SidebarContent className="p-4">
             <SidebarMenu>
               {menuItems.map((item) => (
                 <SidebarMenuItem key={item.href}>
-                  <SidebarMenuButton 
-                    asChild 
+                  <SidebarMenuButton
+                    asChild
                     isActive={location === item.href}
                     className="data-[active=true]:bg-primary/10 data-[active=true]:text-primary"
                   >
@@ -83,6 +83,7 @@ export function LayoutShell({ children }: { children: React.ReactNode }) {
                 <p className="text-xs text-muted-foreground truncate">{user?.email}</p>
               </div>
             </div>
+            {/* 
             <Button 
               variant="outline" 
               className="w-full justify-start gap-2 border-border/50 hover:bg-destructive/10 hover:text-destructive hover:border-destructive/20"
@@ -91,6 +92,7 @@ export function LayoutShell({ children }: { children: React.ReactNode }) {
               <LogOut className="w-4 h-4" />
               Sign Out
             </Button>
+            */}
           </SidebarFooter>
           <SidebarRail />
         </Sidebar>
@@ -102,14 +104,14 @@ export function LayoutShell({ children }: { children: React.ReactNode }) {
               Construction Management System
             </div>
           </header>
-          
+
           <div className="flex-1 overflow-auto p-4 md:p-8">
             <div className="max-w-7xl mx-auto space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
               {children}
             </div>
           </div>
         </main>
-        
+
         <AiAssistant />
       </div>
     </SidebarProvider>
