@@ -159,7 +159,7 @@ export const maintenanceLogsRelations = relations(maintenanceLogs, ({ one }) => 
 }));
 
 // === SCHEMAS ===
-export const insertProjectSchema = createInsertSchema(projects).omit({ id: true, createdAt: true });
+export const insertProjectSchema = createInsertSchema(projects).omit({ id: true, createdAt: true, startDate: true });
 export const insertPhaseSchema = createInsertSchema(phases).omit({ id: true });
 export const insertProjectPhaseSchema = createInsertSchema(projectPhases).omit({ id: true });
 export const insertTimeEntrySchema = createInsertSchema(timeEntries).omit({ id: true, createdAt: true });
