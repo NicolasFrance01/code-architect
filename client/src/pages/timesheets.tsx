@@ -34,7 +34,7 @@ export default function Timesheets() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!user) return;
-    
+
     createEntry.mutate({
       projectId: parseInt(formData.projectId),
       phaseId: parseInt(formData.phaseId),
@@ -73,19 +73,19 @@ export default function Timesheets() {
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="space-y-2">
                   <Label>Date</Label>
-                  <Input 
-                    type="date" 
+                  <Input
+                    type="date"
                     value={formData.date}
-                    onChange={e => setFormData({...formData, date: e.target.value})}
+                    onChange={e => setFormData({ ...formData, date: e.target.value })}
                     required
                   />
                 </div>
-                
+
                 <div className="space-y-2">
                   <Label>Project</Label>
-                  <Select 
+                  <Select
                     value={formData.projectId}
-                    onValueChange={v => setFormData({...formData, projectId: v})}
+                    onValueChange={v => setFormData({ ...formData, projectId: v })}
                   >
                     <SelectTrigger>
                       <SelectValue placeholder="Select Project" />
@@ -102,7 +102,7 @@ export default function Timesheets() {
                   <Label>Phase / Work Code</Label>
                   <Select
                     value={formData.phaseId}
-                    onValueChange={v => setFormData({...formData, phaseId: v})}
+                    onValueChange={v => setFormData({ ...formData, phaseId: v })}
                   >
                     <SelectTrigger>
                       <SelectValue placeholder="Select Phase" />
@@ -117,9 +117,9 @@ export default function Timesheets() {
 
                 <div className="space-y-2">
                   <Label>Worker Name</Label>
-                  <Input 
+                  <Input
                     value={formData.workerName}
-                    onChange={e => setFormData({...formData, workerName: e.target.value})}
+                    onChange={e => setFormData({ ...formData, workerName: e.target.value })}
                     placeholder="John Doe"
                     required
                   />
@@ -127,20 +127,20 @@ export default function Timesheets() {
 
                 <div className="space-y-2">
                   <Label>Hours</Label>
-                  <Input 
-                    type="number" 
+                  <Input
+                    type="number"
                     step="0.5"
                     value={formData.hours}
-                    onChange={e => setFormData({...formData, hours: e.target.value})}
+                    onChange={e => setFormData({ ...formData, hours: e.target.value })}
                     required
                   />
                 </div>
 
                 <div className="space-y-2">
                   <Label>Notes</Label>
-                  <Textarea 
+                  <Textarea
                     value={formData.notes}
-                    onChange={e => setFormData({...formData, notes: e.target.value})}
+                    onChange={e => setFormData({ ...formData, notes: e.target.value })}
                   />
                 </div>
 
@@ -179,7 +179,9 @@ export default function Timesheets() {
                       <tr key={entry.id} className="border-t hover:bg-muted/20">
                         <td className="p-3 font-mono">{format(new Date(entry.date), 'MM/dd')}</td>
                         <td className="p-3 font-medium">{entry.workerName}</td>
-                        <td className="p-3 text-muted-foreground">Project #{entry.projectId}</td>
+                        <td className="p-3 text-muted-foreground">
+                          {projects?.find(p => p.id === entry.projectId)?.name || `Project #${entry.projectId}`}
+                        </td>
                         <td className="p-3 font-bold">{entry.hours}</td>
                       </tr>
                     ))}

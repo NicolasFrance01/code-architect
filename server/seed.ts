@@ -1,13 +1,33 @@
 import { storage } from "./storage";
-import { 
-  projects, phases, tools, materials, equipment, 
-  insertProjectSchema, insertPhaseSchema, insertToolSchema, 
-  insertMaterialSchema, insertEquipmentSchema 
+import {
+  projects, phases, tools, materials, equipment, users,
+  insertProjectSchema, insertPhaseSchema, insertToolSchema,
+  insertMaterialSchema, insertEquipmentSchema
 } from "@shared/schema";
 import { db } from "./db";
 import { sql } from "drizzle-orm";
 
 export async function seed() {
+  // 0. Users (Ensure at least one exists for Foreign Keys)
+  // This must run even if other data exists
+  try {
+    const [existingUser] = await db.select().from(users).limit(1);
+    if (!existingUser) {
+      await db.insert(users).values({
+        id: "1", // Force ID 1 to match external.ts hardcoded foremanId
+        email: "dev@example.com",
+        firstName: "Dev",
+        lastName: "Admin",
+        role: "admin",
+        createdAt: new Date(),
+        updatedAt: new Date()
+      });
+      console.log("Seeded default user");
+    }
+  } catch (e) {
+    console.error("Error seeding user:", e);
+  }
+
   const existingProjects = await storage.getProjects();
   if (existingProjects.length > 0) return;
 

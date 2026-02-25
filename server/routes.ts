@@ -1,11 +1,14 @@
-import type { Express } from "express";
+import express, { type Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { api } from "@shared/routes";
 import { z } from "zod";
 import { setupAuth, registerAuthRoutes } from "./replit_integrations/auth";
+import path from "path";
 
 import { seed } from "./seed";
+
+import { externalRouter } from "./routes/external";
 
 export async function registerRoutes(
   httpServer: Server,
@@ -16,9 +19,16 @@ export async function registerRoutes(
   await setupAuth(app);
   registerAuthRoutes(app);
 
+  // External Integrations
+  app.use("/api/external", externalRouter);
 
   // Seed Data
   await seed();
+
+  // UNIFIED ARCHITECTURE: Serve Mobile App
+  // Now located INSIDE the Code-Architect folder for cloud deployment
+  const mobileAppPath = path.resolve(process.cwd(), "control-ingreso");
+  app.use("/ingreso", express.static(mobileAppPath));
 
   // Domain Routes
 
