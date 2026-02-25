@@ -28,36 +28,42 @@ export async function seed() {
     console.error("Error seeding user:", e);
   }
 
-  const existingProjects = await storage.getProjects();
-  if (existingProjects.length > 0) return;
-
-  console.log("Seeding database...");
-
   // 1. Phases
   const phaseData = [
-    { code: "001", name: "Site Prep / Demolition", category: "labor" },
-    { code: "002", name: "Foundation / Concrete", category: "labor" },
-    { code: "003", name: "Framing", category: "labor" },
-    { code: "004", name: "Plumbing Rough-in", category: "labor" },
-    { code: "005", name: "Electrical Rough-in", category: "labor" },
-    { code: "101", name: "Lumber Package", category: "material" },
-    { code: "102", name: "Concrete Mix", category: "material" },
-    { code: "201", name: "Excavator Rental", category: "equipment" },
+    { code: "001", name: "Site Prep / Demolition", category: "labor" as const },
+    { code: "002", name: "Foundation / Concrete", category: "labor" as const },
+    { code: "003", name: "Framing", category: "labor" as const },
+    { code: "004", name: "Plumbing Rough-in", category: "labor" as const },
+    { code: "005", name: "Electrical Rough-in", category: "labor" as const },
+    { code: "101", name: "Lumber Package", category: "material" as const },
+    { code: "102", name: "Concrete Mix", category: "material" as const },
+    { code: "201", name: "Excavator Rental", category: "equipment" as const },
   ];
 
   for (const p of phaseData) {
-    await storage.createPhase(p);
+    try {
+      await storage.createPhase(p);
+    } catch (e) {
+      // Ignore if duplicates exist during seed re-run
+    }
   }
 
   // 2. Projects
   const projectData = [
-    { jobNumber: "24-101", name: "Riverside Commercial Complex", client: "Apex Developers", location: "123 River Rd", status: "active", budgetHours: 5000 },
-    { jobNumber: "24-102", name: "Oakwood Residential Estate", client: "Private Owner", location: "45 Oak Ln", status: "active", budgetHours: 1200 },
-    { jobNumber: "24-099", name: "Downtown Renovation", client: "City Council", location: "88 Main St", status: "completed", budgetHours: 800 },
+    { jobNumber: "24-101", name: "Riverside Commercial Complex", client: "Apex Developers", location: "123 River Rd", status: "active" as const, budgetHours: 5000 },
+    { jobNumber: "24-102", name: "Oakwood Residential Estate", client: "Private Owner", location: "45 Oak Ln", status: "active" as const, budgetHours: 1200 },
+    { jobNumber: "24-099", name: "Downtown Renovation", client: "City Council", location: "88 Main St", status: "completed" as const, budgetHours: 800 },
   ];
 
   for (const p of projectData) {
-    await storage.createProject(p);
+    try {
+      const existing = await db.select().from(projects).where(eq(projects.jobNumber, p.jobNumber)).limit(1);
+      if (existing.length === 0) {
+        await storage.createProject(p);
+      }
+    } catch (e) {
+      console.error("Error seeding project:", e);
+    }
   }
 
   // 3. Inventory - Materials
