@@ -25,11 +25,6 @@ export async function registerRoutes(
   // Seed Data
   await seed();
 
-  // UNIFIED ARCHITECTURE: Serve Mobile App
-  // Now located INSIDE the Code-Architect folder for cloud deployment
-  const mobileAppPath = path.resolve(process.cwd(), "control-ingreso");
-  app.use("/ingreso", express.static(mobileAppPath));
-
   // Domain Routes
 
   // Projects

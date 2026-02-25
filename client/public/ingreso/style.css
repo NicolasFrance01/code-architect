@@ -1,0 +1,145 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    padding: 20px;
+}
+
+.container {
+    width: 100%;
+    max-width: 420px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 24px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+    padding: 40px 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+}
+
+.form-box {
+    width: 100%;
+}
+
+h1 {
+    font-size: 26px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 8px;
+    text-align: center;
+}
+
+p.subtitle {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+/* Ensure paragraph inside form-box follows style (adding class or generic) */
+.form-box p:not(.error) {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.input-box {
+    position: relative;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.input-box input,
+.input-box select {
+    width: 100%;
+    padding: 16px 50px 16px 20px;
+    background: #f8f9fa;
+    border: 2px solid #eef0f3;
+    border-radius: 16px;
+    font-size: 15px;
+    color: #333;
+    transition: all 0.3s ease;
+    outline: none;
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+.input-box input:focus,
+.input-box select:focus {
+    border-color: #7494ec;
+    background: #fff;
+    box-shadow: 0 0 0 4px rgba(116, 148, 236, 0.1);
+}
+
+.input-box i {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 22px;
+    color: #a0a5b9;
+    pointer-events: none;
+    transition: color 0.3s ease;
+}
+
+.input-box input:focus~i,
+.input-box select:focus~i {
+    color: #7494ec;
+}
+
+.btn {
+    width: 100%;
+    height: 56px;
+    background: linear-gradient(135deg, #7494ec 0%, #5c7cfa 100%);
+    border-radius: 16px;
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 10px 20px rgba(116, 148, 236, 0.3);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    margin-top: 10px;
+}
+
+.btn:active {
+    transform: scale(0.98);
+    box-shadow: 0 5px 10px rgba(116, 148, 236, 0.2);
+}
+
+.error {
+    color: #ff4757;
+    font-size: 13px;
+    margin-top: 15px;
+    text-align: center;
+    min-height: 20px;
+    font-weight: 500;
+}
+
+/* Hide unused elements from previous layout */
+.toggle-box,
+.hidden {
+    display: none !important;
+}
+
+/* Responsive */
+@media screen and (max-width: 480px) {
+    .container {
+        padding: 30px 20px;
+        min-height: auto;
+    }
+}

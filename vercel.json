@@ -2,7 +2,7 @@
     "version": 2,
     "builds": [
         {
-            "src": "server/index.ts",
+            "src": "api/index.ts",
             "use": "@vercel/node"
         },
         {
@@ -13,38 +13,14 @@
             }
         }
     ],
-    "routes": [
+    "rewrites": [
         {
-            "src": "/api/external/(.*)",
-            "dest": "server/index.ts"
+            "source": "/api/(.*)",
+            "destination": "/api"
         },
         {
-            "src": "/api/(.*)",
-            "dest": "server/index.ts"
-        },
-        {
-            "src": "/ingreso/(.*)",
-            "dest": "server/index.ts"
-        },
-        {
-            "src": "/auth/(.*)",
-            "dest": "server/index.ts"
-        },
-        {
-            "src": "/(.*)",
-            "dest": "/$1",
-            "continue": true
-        },
-        {
-            "handle": "filesystem"
-        },
-        {
-            "src": "/timesheets",
-            "dest": "/index.html"
-        },
-        {
-            "src": "/(.*)",
-            "dest": "/index.html"
+            "source": "/auth/(.*)",
+            "destination": "/api"
         }
     ]
 }
