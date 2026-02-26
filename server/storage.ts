@@ -1,5 +1,5 @@
 import { db } from "./db.js";
-import { users, type User, type InsertUser, projects, type Project, type InsertProject, phases, type Phase, type InsertPhase, timeEntries, type TimeEntry, type InsertTimeEntry, materials, type Material, type InsertMaterial, tools, type Tool, type InsertTool, equipment, type Equipment, type InsertEquipment, maintenanceLogs, type InsertMaintenanceLog, type MaintenanceLog } from "@shared/schema";
+import { users, type User, projects, type Project, type InsertProject, phases, type Phase, type InsertPhase, timeEntries, type TimeEntry, type InsertTimeEntry, materials, type Material, type InsertMaterial, tools, type Tool, type InsertTool, equipment, type Equipment, type InsertEquipment, maintenanceLogs, type InsertMaintenanceLog, type MaintenanceLog } from "../shared/schema.js";
 import { eq, sql } from "drizzle-orm";
 
 export interface IStorage {

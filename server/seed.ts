@@ -3,7 +3,7 @@ import {
   projects, phases, tools, materials, equipment, users,
   insertProjectSchema, insertPhaseSchema, insertToolSchema,
   insertMaterialSchema, insertEquipmentSchema
-} from "@shared/schema";
+} from "../shared/schema.js";
 import { db } from "./db";
 import { eq, sql } from "drizzle-orm";
 

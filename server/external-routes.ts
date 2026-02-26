@@ -1,7 +1,7 @@
 
 import { Router } from "express";
 import { storage } from "./storage.js";
-import { insertTimeEntrySchema } from "@shared/schema";
+import { insertTimeEntrySchema } from "../shared/schema.js";
 import { z } from "zod";
 
 export const externalRouter = Router();
