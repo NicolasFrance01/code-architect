@@ -4,10 +4,10 @@ import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
 // Export Auth & Chat models
-export * from "./models/auth";
-export * from "./models/chat";
+export * from "./models/auth.js";
+export * from "./models/chat.js";
 
-import { users } from "./models/auth";
+import { users } from "./models/auth.js";
 
 // === PROJECTS MODULE ===
 export const projects = pgTable("projects", {
