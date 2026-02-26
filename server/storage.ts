@@ -1,12 +1,5 @@
-import { db } from "./db";
-import { 
-  projects, phases, projectPhases, timeEntries, tools, materials, 
-  materialTransactions, equipment, maintenanceLogs,
-  type InsertProject, type InsertPhase, type InsertTimeEntry,
-  type InsertTool, type InsertMaterial, type InsertEquipment,
-  type InsertMaintenanceLog,
-  type Project, type Phase, type TimeEntry, type Tool, type Material, type Equipment, type MaintenanceLog
-} from "@shared/schema";
+import { db } from "./db.js";
+import { users, type User, type InsertUser, projects, type Project, type InsertProject, phases, type Phase, type InsertPhase, timeEntries, type TimeEntry, type InsertTimeEntry, materials, type Material, type InsertMaterial, tools, type Tool, type InsertTool, equipment, type Equipment, type InsertEquipment, maintenanceLogs, type InsertMaintenanceLog, type MaintenanceLog } from "@shared/schema";
 import { eq, sql } from "drizzle-orm";
 
 export interface IStorage {
@@ -153,7 +146,7 @@ export class DatabaseStorage implements IStorage {
     const activeProjects = (await db.select({ count: sql<number>`count(*)` }).from(projects).where(eq(projects.status, 'active')))[0].count;
     const lowStockItems = (await db.select({ count: sql<number>`count(*)` }).from(materials).where(sql`quantity <= reorder_level`))[0].count;
     const equipmentInUse = (await db.select({ count: sql<number>`count(*)` }).from(equipment).where(eq(equipment.status, 'active')))[0].count;
-    
+
     return {
       activeProjects: Number(activeProjects),
       totalEmployees: 12, // Placeholder

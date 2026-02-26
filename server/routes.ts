@@ -1,14 +1,14 @@
 import express, { type Express } from "express";
 import { createServer, type Server } from "http";
-import { storage } from "./storage";
+import { storage } from "./storage.js";
 import { api } from "@shared/routes";
 import { z } from "zod";
 // import { setupAuth, registerAuthRoutes } from "./replit_integrations/auth";
 import path from "path";
 
-import { seed } from "./seed";
+import { seed } from "./seed.js";
 
-import { externalRouter } from "./external-routes";
+import { externalRouter } from "./external-routes.js";
 
 export async function registerRoutes(
   httpServer: Server,
