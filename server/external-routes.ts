@@ -1,6 +1,6 @@
 
 import { Router } from "express";
-import { storage } from "../storage";
+import { storage } from "./storage";
 import { insertTimeEntrySchema } from "@shared/schema";
 import { z } from "zod";
 
