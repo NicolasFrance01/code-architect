@@ -29,7 +29,7 @@ export default function Projects() {
   const { data: projects, isLoading } = useProjects();
   const createProject = useCreateProject();
   const { toast } = useToast();
-  
+
   const [formData, setFormData] = useState({
     jobNumber: "",
     name: "",
@@ -75,18 +75,18 @@ export default function Projects() {
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <Label>Job Number</Label>
-                    <Input 
+                    <Input
                       required
                       value={formData.jobNumber}
-                      onChange={e => setFormData({...formData, jobNumber: e.target.value})}
+                      onChange={e => setFormData({ ...formData, jobNumber: e.target.value })}
                       placeholder="e.g. 25-001"
                     />
                   </div>
                   <div className="space-y-2">
                     <Label>Status</Label>
-                    <Select 
-                      value={formData.status} 
-                      onValueChange={(v: any) => setFormData({...formData, status: v})}
+                    <Select
+                      value={formData.status}
+                      onValueChange={(v: any) => setFormData({ ...formData, status: v })}
                     >
                       <SelectTrigger>
                         <SelectValue />
@@ -101,36 +101,36 @@ export default function Projects() {
                 </div>
                 <div className="space-y-2">
                   <Label>Project Name</Label>
-                  <Input 
+                  <Input
                     required
                     value={formData.name}
-                    onChange={e => setFormData({...formData, name: e.target.value})}
+                    onChange={e => setFormData({ ...formData, name: e.target.value })}
                     placeholder="e.g. Downtown Office Renovation"
                   />
                 </div>
                 <div className="space-y-2">
                   <Label>Client</Label>
-                  <Input 
+                  <Input
                     required
                     value={formData.client}
-                    onChange={e => setFormData({...formData, client: e.target.value})}
+                    onChange={e => setFormData({ ...formData, client: e.target.value })}
                   />
                 </div>
                 <div className="space-y-2">
                   <Label>Location</Label>
-                  <Input 
+                  <Input
                     required
                     value={formData.location}
-                    onChange={e => setFormData({...formData, location: e.target.value})}
+                    onChange={e => setFormData({ ...formData, location: e.target.value })}
                   />
                 </div>
                 <div className="space-y-2">
                   <Label>Budget Hours</Label>
-                  <Input 
+                  <Input
                     type="number"
                     required
                     value={formData.budgetHours}
-                    onChange={e => setFormData({...formData, budgetHours: parseInt(e.target.value)})}
+                    onChange={e => setFormData({ ...formData, budgetHours: parseInt(e.target.value) || 0 })}
                   />
                 </div>
                 <Button type="submit" className="w-full" disabled={createProject.isPending}>
@@ -159,8 +159,8 @@ export default function Projects() {
                     </Badge>
                     <Badge className={
                       project.status === 'active' ? 'bg-green-500/10 text-green-600 hover:bg-green-500/20' :
-                      project.status === 'paused' ? 'bg-yellow-500/10 text-yellow-600 hover:bg-yellow-500/20' :
-                      'bg-slate-500/10 text-slate-600 hover:bg-slate-500/20'
+                        project.status === 'paused' ? 'bg-yellow-500/10 text-yellow-600 hover:bg-yellow-500/20' :
+                          'bg-slate-500/10 text-slate-600 hover:bg-slate-500/20'
                     }>
                       {project.status}
                     </Badge>
