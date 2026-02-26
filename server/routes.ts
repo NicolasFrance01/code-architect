@@ -8,7 +8,7 @@ import path from "path";
 
 import { seed } from "./seed";
 
-import { externalRouter } from "./routes/external";
+import { externalRouter } from "./external-routes";
 
 export async function registerRoutes(
   httpServer: Server,
