@@ -32,7 +32,7 @@ export async function registerRoutes(
   });
 
   // Seed Data
-  await seed();
+  // await seed(); // Disabled for production to prevent serverless timeouts
 
   // Domain Routes
 
