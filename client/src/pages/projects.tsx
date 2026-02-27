@@ -181,10 +181,10 @@ export default function Projects() {
                   <div className="mt-4 pt-4 border-t border-border/50">
                     <div className="flex justify-between text-xs mb-1">
                       <span>Hours Used</span>
-                      <span className="font-medium text-foreground">0 / {project.budgetHours}</span>
+                      <span className="font-medium text-foreground">{project.hoursUsed} / {project.budgetHours}</span>
                     </div>
                     <div className="h-2 w-full bg-secondary/20 rounded-full overflow-hidden">
-                      <div className="h-full bg-primary w-[0%]" />
+                      <div className="h-full bg-primary" style={{ width: `${Math.min(100, Math.max(0, project.budgetHours > 0 ? (Number(project.hoursUsed) / project.budgetHours) * 100 : 0))}%` }} />
                     </div>
                   </div>
                 </CardContent>

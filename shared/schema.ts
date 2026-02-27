@@ -18,6 +18,7 @@ export const projects = pgTable("projects", {
   location: text("location").notNull(),
   status: text("status", { enum: ["active", "completed", "paused"] }).default("active").notNull(),
   budgetHours: integer("budget_hours").default(0).notNull(),
+  hoursUsed: numeric("hours_used").default("0").notNull(),
   startDate: date("start_date").defaultNow(),
   createdAt: timestamp("created_at").defaultNow(),
 });

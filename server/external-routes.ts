@@ -82,6 +82,13 @@ externalRouter.post("/timesheets", async (req, res) => {
             notes: data.notes || "Imported via Control-Ingreso",
         });
 
+        // 5. Update Project Hours Used
+        const currentHours = Number(project.hoursUsed || 0);
+        const addedHours = Number(data.hours || 0);
+        await storage.updateProject(project.id, {
+            hoursUsed: (currentHours + addedHours).toString()
+        });
+
         res.json({ ok: true, id: entry.id });
 
     } catch (error) {
