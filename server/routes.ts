@@ -100,6 +100,17 @@ export async function registerRoutes(
   app.post(api.timeEntries.create.path, async (req, res) => {
     const input = api.timeEntries.create.input.parse(req.body);
     const entry = await storage.createTimeEntry(input);
+
+    // Update Project Hours Used
+    const project = await storage.getProject(input.projectId);
+    if (project) {
+      const currentHours = Number(project.hoursUsed || 0);
+      const addedHours = Number(input.hours || 0);
+      await storage.updateProject(project.id, {
+        hoursUsed: (currentHours + addedHours).toString()
+      });
+    }
+
     res.status(201).json(entry);
   });
 
