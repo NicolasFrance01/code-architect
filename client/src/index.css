@@ -18,14 +18,16 @@
   --popover: 0 0% 100%;
   --popover-foreground: 222 47% 11%;
 
-  --primary: 24 95% 53%; /* Industrial Orange */
-  --primary-foreground: 210 40% 98%;
+  --primary: 24 95% 53%;
+  /* Industrial Orange */
+  --primary-foreground: 222 47% 11%;
 
-  --secondary: 215 16% 47%; /* Slate Gray */
+  --secondary: 215 16% 47%;
+  /* Slate Gray */
   --secondary-foreground: 210 40% 98%;
 
   --muted: 210 40% 96%;
-  --muted-foreground: 215 16% 47%;
+  --muted-foreground: 215 25% 40%;
 
   --accent: 210 40% 96%;
   --accent-foreground: 222 47% 11%;
@@ -51,13 +53,13 @@
   --popover-foreground: 210 40% 98%;
 
   --primary: 24 95% 53%;
-  --primary-foreground: 210 40% 98%;
+  --primary-foreground: 222 47% 11%;
 
   --secondary: 217 19% 27%;
   --secondary-foreground: 210 40% 98%;
 
   --muted: 217 19% 27%;
-  --muted-foreground: 215 20.2% 65.1%;
+  --muted-foreground: 215 25% 70%;
 
   --accent: 217 19% 27%;
   --accent-foreground: 210 40% 98%;
@@ -76,7 +78,12 @@
     font-family: var(--font-sans);
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-family: var(--font-display);
     @apply tracking-tight uppercase;
   }
@@ -87,9 +94,11 @@
   width: 8px;
   height: 8px;
 }
+
 ::-webkit-scrollbar-track {
   @apply bg-muted;
 }
+
 ::-webkit-scrollbar-thumb {
   @apply bg-muted-foreground/30 rounded-full hover:bg-primary/50 transition-colors;
 }

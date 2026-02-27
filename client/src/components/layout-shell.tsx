@@ -57,7 +57,7 @@ export function LayoutShell({ children }: { children: React.ReactNode }) {
                   <SidebarMenuButton
                     asChild
                     isActive={location === item.href}
-                    className="data-[active=true]:bg-primary/10 data-[active=true]:text-primary"
+                    className="data-[active=true]:bg-primary data-[active=true]:text-primary-foreground"
                   >
                     <Link href={item.href} className="flex items-center gap-3 font-medium">
                       <item.icon className="w-5 h-5" />
@@ -100,7 +100,7 @@ export function LayoutShell({ children }: { children: React.ReactNode }) {
         <main className="flex-1 flex flex-col min-w-0 overflow-hidden">
           <header className="h-16 border-b border-border/50 flex items-center px-4 md:px-8 bg-background/80 backdrop-blur-sm sticky top-0 z-10">
             <SidebarTrigger />
-            <div className="ml-4 font-display font-bold text-lg text-muted-foreground/50 uppercase tracking-widest">
+            <div className="ml-4 font-display font-bold text-lg text-muted-foreground uppercase tracking-widest">
               Construction Management System
             </div>
           </header>
