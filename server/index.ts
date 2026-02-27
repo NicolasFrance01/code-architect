@@ -64,7 +64,7 @@ app.use((req, res, next) => {
 
 export default app;
 
-if (process.env.NODE_ENV !== "production" || process.env.VERCEL) {
+if (process.env.NODE_ENV !== "production" && !process.env.VERCEL) {
   (async () => {
     await registerRoutes(httpServer, app);
 
