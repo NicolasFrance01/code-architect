@@ -1,9 +1,9 @@
 import { z } from 'zod';
-import { 
-  insertProjectSchema, 
-  insertPhaseSchema, 
-  insertTimeEntrySchema, 
-  insertToolSchema, 
+import {
+  insertProjectSchema,
+  insertPhaseSchema,
+  insertTimeEntrySchema,
+  insertToolSchema,
   insertMaterialSchema,
   insertMaterialTransactionSchema,
   insertEquipmentSchema,
@@ -15,7 +15,7 @@ import {
   materials,
   equipment,
   maintenanceLogs
-} from './schema';
+} from './schema.js';
 
 export const errorSchemas = {
   validation: z.object({
