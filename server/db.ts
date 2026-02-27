@@ -10,5 +10,13 @@ if (!process.env.DATABASE_URL) {
   );
 }
 
-export const pool = new Pool({ connectionString: process.env.DATABASE_URL });
+export const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  // Enforce SSL for Neon and prevent Serverless hang timeouts
+  ssl: {
+    rejectUnauthorized: false
+  },
+  // Limit connections per serverless instance to prevent DB exhaustion
+  max: 1
+});
 export const db = drizzle(pool, { schema });
